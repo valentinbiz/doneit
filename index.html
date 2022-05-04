@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+      <meta name="msapplication-TileColor" content="#da532c">
+      <meta name="theme-color" content="#ffffff">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script
+         src="https://kit.fontawesome.com/9180ccaa78.js"
+         crossorigin="anonymous"
+         ></script>
+      <title>Productivity App</title>
+      <link rel="icon" type="image/png" href="favicon.ico">
+      <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+      <div class="project-container">
+         <div class="modal-instructions-wrapper">
+            <div id="modal-instructions" class="some">
+               <div id="modal-title">
+                  <h3>Pomodoro Instructions</h3>
+                  <span id="closeInstructions">&times;</span>
+               </div>
+               <p> 
+                  1. Adjust the duration of a session in the settings menu based on your liking. <br/>
+                  2. Start timer and focus on the task for 25 minutes. <br/>
+                  3. Take a break for 5 minutes when the alarm rings. You have the option to auto-start sessions.<br/>
+                  4. After 4 sessions, a long break will start. Iterate the previous steps until you are done with the task
+                  <h3>Kanban Board Instructions</h3>
+                  1. Add all the tasks you want to work on in the Backlog column. Move the tasks between columns accordingly. <br/>
+                  2. You can edit tasks by simply clicking on it. To save the changes, just click outside the box. <br/>
+                  3. You can move the tasks between column simply by dragging them to the specific column.
+              </p>
+            </div>
+         </div>
+         <div class="pomodoro-timer">
+            <h1> Pomodoro Timer  </h1>
+            <i class="fa fa-leanpub fa-2x" id="instructions" title="Instructions"></i>
+            <div id="container">
+               <p class="set active" id="pomodoro" data-min="25">Pomodoro</p>
+               <p class="set" id="short" data-min="5">Short Break</p>
+               <p class="set" id="long" data-min="15">Long Break</p>
+               <div id="timer">25:00</div>
+               <i class="fas fa-cog fa-2x" id="settings" title="Settings"> </i>
+               <button id="btn">START</button>
+               <i class="fas fa-check fa-2x" id="end-session" title="End Session"></i>
+            </div>
+         </div>
+         <div class="modal-wrapper">
+            <div id="modal" class="some">
+               <div id="modal-title">
+                  <h1>TIMER SETTING</h1>
+                  <span id="close">&times;</span>
+               </div>
+               <hr />
+               <div>
+                  <p>Time (minutes)</p>
+               </div>
+               <div id="modal-time">
+                  <div class="setTimer">
+                     <label for="pom">Pomodoro</label>
+                     <input type="number" min="1" max="60" value="25" id="pom" />
+                  </div>
+                  <div class="setTimer">
+                     <label for="shorter">Short Break</label>
+                     <input type="number" min="1" max="60" value="5" id="shorter" />
+                  </div>
+                  <div class="setTimer">
+                     <label for="longer">Long Break</label>
+                     <input type="number" min="1" max="60" value="15" id="longer" />
+                  </div>
+               </div>
+               <hr />
+               <div id="modal-toggle">
+                  <p>Auto start next session?</p>
+                  <label class="switch">
+                  <input type="checkbox" id="check" />
+                  <span class="slider round"></span>
+                  </label>
+               </div>
+               <hr />
+               <div id="modal-volume">
+                  <p>Volume</p>
+                  <input
+                     type="range"
+                     min="0.01"
+                     max="1"
+                     step="0.01"
+                     value="50"
+                     id="volume"
+                     />
+               </div>
+               <div id="modal-button">
+                  <button id="button-m">OK</button>
+               </div>
+            </div>
+         </div>
+         <audio
+            id="audio"
+            src="https://actions.google.com/sounds/v1/cartoon/cowbell_ringing.ogg"
+            ></audio>
+      </div>
+      <div class="kanban-board">
+         <h1 class="main-title">Tasks tracker</h1>
+         <div class="drag-container">
+            <ul class="drag-list">
+               <!-- Backlog Column-->
+               <li class="drag-column backlog-column">
+                  <span class="header">
+                     <h1> Backlog </h1>
+                  </span>
+                  <div id="backlog-content" class="custom-scroll">
+                     <ul class="drag-item-list" id="backlog-list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(0)" draggable="true"  ondragstart="event.dataTransfer.setData('text/plain',null)" ></ul>
+                  </div>
+                  <div class="add-btn-group">
+                     <div class="add-btn" onclick="showInputBox(0)">
+                        <span class="plus-sign"> + </span>
+                        <span> Add Item </span>
+                     </div>
+                     <div class="add-btn solid" onclick="hideInputBox(0)" style="visibility:hidden"> 
+                        <span>Save</span>
+                     </div>
+                     <div class="remove-btn" onclick="deleteItems(0)">
+                        <span>Remove all </span> 
+                     </div>
+                  </div>
+                  <div class="add-container">
+                     <div class="add-item" contenteditable="true"></div>
+                  </div>
+               </li>
+               <!-- Progress Column-->
+               <li class="drag-column progress-column">
+                  <span class="header">
+                     <h1> In progress </h1>
+                  </span>
+                  <div id="progress-content" class="custom-scroll">
+                     <ul class="drag-item-list" id="progress-list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(1)"  draggable="true"  ondragstart="event.dataTransfer.setData('text/plain',null)"></ul>
+                  </div>
+                  <div class="add-btn-group">
+                     <div class="add-btn" onclick="showInputBox(1)">
+                        <span class="plus-sign"> + </span>
+                        <span> Add Item </span>
+                     </div>
+                     <div class="add-btn solid" onclick="hideInputBox(1)" style="visibility:hidden"> 
+                        <span>Save</span>
+                     </div>
+                     <div class="remove-btn" onclick="deleteItems(1)">
+                        <span>Remove all </span> 
+                     </div>
+                  </div>
+                  <div class="add-container">
+                     <div class="add-item" contenteditable="true"></div>
+                  </div>
+               </li>
+               <!-- Complete Column-->
+               <li class="drag-column complete-column">
+                  <span class="header">
+                     <h1> Complete </h1>
+                  </span>
+                  <div id="complete-content" class="custom-scroll">
+                     <ul class="drag-item-list" id="complete-list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(2)"  draggable="true"  ondragstart="event.dataTransfer.setData('text/plain',null)"></ul>
+                  </div>
+                  <div class="add-btn-group">
+                     <div class="add-btn" onclick="showInputBox(2)">
+                        <span class="plus-sign"> + </span>
+                        <span> Add Item </span>
+                     </div>
+                     <div class="add-btn solid" onclick="hideInputBox(2)" style="visibility:hidden"> 
+                        <span>Save </span>
+                     </div>
+                     <div class="remove-btn" onclick="deleteItems(2)">
+                        <span>Remove all </span> 
+                     </div>
+                  </div>
+                  <div class="add-container">
+                     <div class="add-item" contenteditable="true"></div>
+                  </div>
+               </li>
+            </ul>
+         </div>
+      </div>
+      </div>
+      <!-- Script -->
+      <script src="scriptBoard.js"></script>
+   </body>
+</html>
