@@ -341,7 +341,6 @@ body.addEventListener('click', (e) => {
     resetElements(long)
     body.style.backgroundColor = '#498fc1';
     btn.style.color = '#498fc1';
-    showNotification()
   }
 });
 
@@ -436,7 +435,6 @@ function displayTimeLeft(seconds) {
 
 //Instructions modal
 window.onload = function () {
-  notifyMe();
   setTimeout(function () {
     modalInstructions.classList.add('active')
     document.querySelector('.modal-instructions-wrapper').style.display = 'block'
