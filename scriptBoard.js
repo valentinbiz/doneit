@@ -341,7 +341,7 @@ body.addEventListener('click', (e) => {
     resetElements(long)
     body.style.backgroundColor = '#498fc1';
     btn.style.color = '#498fc1';
-
+    showNotification()
   }
 });
 
@@ -495,23 +495,14 @@ finish.addEventListener('click', () => {
   }
 })
 
-function notifyMe() {
-  // Let's check if the browser supports notifications
-  if (Notification.permission !== "denied") {
-     Notification.requestPermission().then(permission => {
-        console.log(permission);
-     });
-  }
+if (Notification.permission !== "denied") {
+  Notification.requestPermission();
 }
 
 function showNotification() {
-  console.log('Session ended notification')
-  const notification = new Notification("Congrats!", {
-     body: "The session has ended."
+  const notification = new Notification("Productivity App", {
+     body: "Hi there. The current session has ended!"
   })
-  notification.onclick = (e) => {
-     window.location.href = "https://google.com";
-  };
 }
 
 //On load;
