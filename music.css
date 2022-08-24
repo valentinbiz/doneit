@@ -1,0 +1,64 @@
+.music-container {
+   display: flex;
+   position: relative;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   width: 100%;
+   max-width: 500px;
+   min-width: 300px;
+   min-height: 230px;
+ }
+
+.player {
+   display: flex;
+   justify-content: center;
+   background: transparent;
+   cursor: pointer;
+   width: 100%;
+}
+
+.player-button::before,
+.player-button.playing::before {
+   content: '';
+   display: inline-block;
+   border: 0;
+   background: transparent;
+   box-sizing: border-box;
+   width: 0;
+   height: 12px;
+   margin-right: 10px;
+   border-color: transparent transparent transparent black;
+   transition: 100ms all ease;
+   cursor: pointer;
+   border-style: solid;
+   border-width: 6px 0 6px 8px;
+}
+
+.player-button.playing::before {
+   border-style: double;
+   border-width: 0px 0 0px 8px;
+}
+
+#song-info {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   font-size: 1.2rem;
+}
+
+.duration {
+   width: 75px;
+   letter-spacing: 1px;
+}
+
+.full-duration {
+   width: 75px;
+   text-align: center;
+   letter-spacing: 1px;
+}
+
+a {
+   text-decoration: none;
+   color: black;
+ }

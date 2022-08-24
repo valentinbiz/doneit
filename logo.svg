@@ -1,0 +1,5 @@
+<svg id="Component_1_1" data-name="Component 1 – 1" xmlns="http://www.w3.org/2000/svg" width="87" height="53" viewBox="0 0 87 53">
+  <text id="DO" transform="translate(0 43)" fill="#1e1e1e" font-size="40" font-family="SegoeUI-Bold, Segoe UI" font-weight="700"><tspan x="0" y="0">DO</tspan></text>
+  <text id="IT" transform="translate(64 29)" fill="#d87d83" font-size="20" font-family="SegoeUI-Bold, Segoe UI" font-weight="700"><tspan x="0" y="0">IT</tspan></text>
+  <text id="NE" transform="translate(60 44)" fill="#729597" font-size="20" font-family="SegoeUI-Bold, Segoe UI" font-weight="700"><tspan x="0" y="0">NE</tspan></text>
+</svg>
