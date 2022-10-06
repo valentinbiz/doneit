@@ -5,7 +5,7 @@ https://doitdoneit.netlify.app/
 
 ### Application created to improve productivity, time and task management. It combines a `Kanban board`, `Pomodoro timer`, `Stoic Quotes` and `Lofi music player` for concentration.
 
-![plot](./public/image.png)
+![plot](./Main/Resources/screenshot.png)
 
 ### Pomodoro instructions: 
 
