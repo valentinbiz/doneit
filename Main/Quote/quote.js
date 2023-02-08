@@ -25,9 +25,9 @@ async function getQuote() {
     const response = await fetch(proxyUrl + apiUrl);
     const data = await response.json();
     console.log(data);
-    authorText.innerText = data.author;
-    quoteText.innerText = data.body;
-    if (data[0].body.length > 200) {
+    authorText.innerText = data.quoteAuthor;
+    quoteText.innerText = data.quoteText;
+    if (data.quoteText.length > 200) {
       getQuote();
     }
     complete();
