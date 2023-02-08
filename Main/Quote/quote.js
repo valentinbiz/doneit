@@ -17,16 +17,16 @@ function complete() {
 
 async function getQuote() {
   loading();
-  const apiUrl =
-    "https://stoic-server.herokuapp.com/random?method=getQuote&lang=en&format=json";
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+  const apiUrl =
+    "http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json";
 
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(proxyUrl + apiUrl);
     const data = await response.json();
-    authorText.innerText = data[0].author;
-    quoteText.innerText = data[0].body;
-    console.log(data[0].body);
+    console.log(data);
+    authorText.innerText = data.author;
+    quoteText.innerText = data.body;
     if (data[0].body.length > 200) {
       getQuote();
     }

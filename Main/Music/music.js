@@ -1,13 +1,10 @@
-// WE NEED THE YouTUBE iFrame API
 var script = document.createElement("script");
 script.src = "https://www.youtube.com/iframe_api";
 document.head.appendChild(script);
 
-// INI VAR
 var player;
 var isPlaying = false;
 
-// BUILD VIDEO
 function onYouTubeIframeAPIReady() {
   player = new YT.Player("YouTube", {
     height: "390",
@@ -19,12 +16,9 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-// PLAY FUNCTION
 function start_player() {
   player.playVideo();
 }
-
-// DURATION TIME HELPER
 function current_duration(stop) {
   if (stop == true) {
     var time = player.getCurrentTime();
@@ -69,7 +63,6 @@ function current_duration(stop) {
     hours + ":" + minutes + ":" + seconds;
 }
 
-// TOGGLE PLAY BUTTON AND PLAY VIDEO AND SHOW TIME
 function toggle_player() {
   if (isPlaying) {
     isPlaying = false;
